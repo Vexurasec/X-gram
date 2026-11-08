@@ -1,0 +1,39 @@
+name: Build X-gram Linux (AppImage)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "dev", "master", "main" ]
+
+jobs:
+  build:
+    name: Build X-gram Desktop Linux
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: false
+          swap-storage: false
+
+      - name: Set up build environment
+        run: |
+          sudo apt update
+          sudo apt install -y ccache cmake ninja-build clang lld pkg-config \
+            libgl1-mesa-dev libx11-dev libasound2-dev libpulse-dev
+
+      - name: Echo Status
+        run: |
+          echo "Building X-gram with custom PQC engine..."
+          echo "Target binary: X-gram"
