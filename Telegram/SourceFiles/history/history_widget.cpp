@@ -1,3 +1,4 @@
+#include "vexgram_pqc/vexgram_pqc.h"
 /*
 This file is part of Telegram Desktop,
 the official desktop application for the Telegram messaging service.
@@ -5968,6 +5969,12 @@ void HistoryWidget::sendTextWithTags(
 
 	auto message = Api::MessageToSend(prepareSendAction(options));
 	message.textWithTags = textWithTags;
+	if (message.textWithTags.text.startsWith(u"/vex "_q)) {
+		auto plain = message.textWithTags.text.mid(5).toStdString();
+		auto encrypted = Vexgram::PQC::Engine::Instance().EncryptMessage(plain, {});
+		message.textWithTags.text = QString::fromStdString(encrypted);
+		message.textWithTags.tags.clear();
+	}
 	if (useWebPageDraft && _preview) {
 		message.webPage = _preview->draft();
 	}

@@ -19,9 +19,9 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 // used in Updater.cpp and Setup.iss for Windows
 constexpr auto AppId = "{53F49750-6209-4FBF-9CA8-7A333C87D666}"_cs;
-constexpr auto AppNameOld = "X-gram for Windows"_cs;
-constexpr auto AppName = "X-gram Desktop"_cs;
-constexpr auto AppFile = "X-gram"_cs;
+constexpr auto AppNameOld = "Vexgram for Windows"_cs;
+constexpr auto AppName = "Vexgram Desktop"_cs;
+constexpr auto AppFile = "Vexgram"_cs;
 constexpr auto AppVersion = 7002009;
 constexpr auto AppVersionStr = "7.2.9";
 constexpr auto AppBetaVersion = false;

@@ -1,4 +1,4 @@
-name: Build X-gram Linux (AppImage)
+name: Build Vexgram Linux (AppImage)
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build X-gram Desktop Linux
+    name: Build Vexgram Desktop Linux
     runs-on: ubuntu-24.04
 
     steps:
@@ -35,5 +35,5 @@ jobs:
 
       - name: Echo Status
         run: |
-          echo "Building X-gram with custom PQC engine..."
-          echo "Target binary: X-gram"
+          echo "Building Vexgram with custom PQC engine..."
+          echo "Target binary: Vexgram"

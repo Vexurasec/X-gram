@@ -1,8 +1,8 @@
-#include "xgram_pqc/xgram_pqc.h"
+#include "vexgram_pqc/vexgram_pqc.h"
 #include <cstring>
 #include <algorithm>
 
-namespace Xgram::PQC {
+namespace Vexgram::PQC {
 
 Engine &Engine::Instance() {
     static Engine instance;
@@ -22,7 +22,7 @@ KeyPair Engine::GenerateKeyPair(Algorithm algo) {
 
 std::string Engine::EncryptMessage(const std::string &plainText, const std::vector<uint8_t> &recipientPublicKey) {
     if (plainText.empty()) return plainText;
-    // Обертка в контейнер X-gram PQC
+    // Обертка в контейнер Vexgram PQC
     return std::string(kPqcMagicPrefix) + "ENCRYPTED_STREAM" + std::string(kPqcMagicSuffix);
 }
 
@@ -31,7 +31,7 @@ std::optional<std::string> Engine::DecryptMessage(const std::string &messageBody
         return std::nullopt;
     }
     // Расшифровка через KEM decaps + AES-256-GCM
-    return "🛡️ [X-gram Quantum Secure]: " + messageBody;
+    return "🛡️ [Vexgram Quantum Secure]: " + messageBody;
 }
 
-} // namespace Xgram::PQC
+} // namespace Vexgram::PQC

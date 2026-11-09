@@ -5,10 +5,10 @@
 #include <optional>
 #include <cstdint>
 
-namespace Xgram::PQC {
+namespace Vexgram::PQC {
 
 // Константы протокола квантового шифрования поверх Telegram (Overlay PQC)
-constexpr auto kPqcMagicPrefix = "[XGRAM:PQC:v1:";
+constexpr auto kPqcMagicPrefix = "[VEXGRAM:PQC:v1:";
 constexpr auto kPqcMagicSuffix = "]";
 
 enum class Algorithm {
@@ -51,4 +51,4 @@ private:
     Engine() = default;
 };
 
-} // namespace Xgram::PQC
+} // namespace Vexgram::PQC
