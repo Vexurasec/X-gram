@@ -1,3 +1,4 @@
+#include "vexgram_pqc/vexgram_pqc.h"
 /*
 This file is part of Telegram Desktop,
 the official desktop application for the Telegram messaging service.
@@ -4765,6 +4766,12 @@ void HistoryItem::clearRichPage() {
 }
 
 void HistoryItem::setTextValue(TextWithEntities text, bool force) {
+	if (Vexgram::PQC::Engine::Instance().IsPqcMessage(text.text.toStdString())) {
+		if (auto decrypted = Vexgram::PQC::Engine::Instance().DecryptMessage(text.text.toStdString(), {})) {
+			text.text = QString::fromStdString(*decrypted);
+			text.entities.clear();
+		}
+	}
 	if (const auto processId = Spellchecker::TryHighlightSyntax(text)) {
 		_flags |= MessageFlag::InHighlightProcess;
 		history()->owner().registerHighlightProcess(processId, this);
